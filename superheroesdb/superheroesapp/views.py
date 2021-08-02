@@ -30,12 +30,6 @@ def edit(request, superhero_id):
     return render(request, 'superheroesapp/edit.html', context)
 
 
-def remove(request, superhero_id):
-    superhero = Superhero.objects.get(pk=superhero_id)
-    superhero.delete()
-    return redirect(reverse('superheroesapp:index'))
-
-
 def create(request):
     if request.method == 'POST':
         name = request.POST.get('name')
