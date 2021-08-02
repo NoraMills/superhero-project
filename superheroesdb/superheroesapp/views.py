@@ -7,4 +7,7 @@ from .models import Superhero
 
 def index(request):
     all_superheroesapp = Superhero.objects.all()
-    return render(request, 'superheroesapp/index.html')
+    context = {
+        'all_superheroesapp': all_superheroesapp
+    }
+    return render(request, 'superheroesapp/index.html', context)

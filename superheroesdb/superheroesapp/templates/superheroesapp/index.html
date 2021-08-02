@@ -9,7 +9,14 @@
 </head>
 
 <body>
-    <h1>This is a template.</h1>
+    <h1>Superheroes:</h1>
+    <ul>
+        {% for superhero in all_superheroesapp %}
+        <li>
+            <h2> {{superhero.name}} </h2>
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 
 </html>
