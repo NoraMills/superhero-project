@@ -18,7 +18,12 @@
         </li>
         {% endfor %}
     </ul>
-    <p><a href="{% url 'superheroesapp:create' %}">Create</a> your own superhero.</p>
+    <p>
+    <ul>
+        <h2>Additional Options:</h2>
+        <li><a href="{% url 'superheroesapp:create' %}">Create</a> your own superhero.</li>
+        <li><a href="{% url 'superheroesapp:edit' %}">Edit</a> superhero.</li>
+    </ul>
 </body>
 
 </html>

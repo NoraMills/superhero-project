@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Superhero
 from django.urls import reverse
@@ -22,6 +22,20 @@ def detail(request, superhero_id):
     return render(request, 'superheroesapp/details.html', context)
 
 
+def edit(request, superhero_id):
+    superhero_delete = Superhero.objects.get(pk=superhero_id)
+    context = {
+        'superhero_delete': superhero_delete
+    }
+    return render(request, 'superheroesapp/edit.html', context)
+
+
+def remove(request, superhero_id):
+    superhero = Superhero.objects.get(pk=superhero_id)
+    superhero.delete()
+    return redirect(reverse('superheroesapp:index'))
+
+
 def create(request):
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -32,6 +46,6 @@ def create(request):
         new_superhero = Superhero(name=name, alter_ego=alter_ego, primary_superpower=primary_superpower,
                                   secondary_superpower=secondary_superpower, catchphrase=catchphrase)
         new_superhero.save()
-        return HttpResponseRedirect(reverse('superhero:index'))
+        return HttpResponseRedirect(reverse('superheroesapp:index'))
     else:
         return render(request, 'superheroesapp/create.html')
